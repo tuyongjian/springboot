@@ -7,6 +7,20 @@
   <version>1.0-SNAPSHOT</version>
   <name>springboot Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <!-- 定义公共资源版本 -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.6.RELEASE</version>
+    <relativePath />
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -14,8 +28,22 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- 上边引入 parent，因此 下边无需指定版本 -->
+    <!-- 包含 mvc,aop 等jar资源 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>springboot</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
   </build>
 </project>
