@@ -34,7 +34,7 @@ public class userController {
     @RequestMapping(value="queryUser")
     public @ResponseBody User queryUser(ModelMap model,
                    @RequestParam(value = "id") int id){
-        logger.info("根据id[{}]查询用户",id);
+        logger.info("根据id[{}]查询用户------------",id);
         User user = this.userService.queryUser(id);
         logger.info("查询结果为[{}]",user.toString());
         return user;
