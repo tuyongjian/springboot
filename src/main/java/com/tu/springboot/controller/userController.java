@@ -26,7 +26,7 @@ public class userController {
                         @RequestParam(value = "id") int id){
         logger.info("根据id[{}]查询用户",id);
         User user = this.userService.queryUser(id);
-        logger.info("查询结果为[{}]---------------",user.toString());
+        logger.info("查询结果为[{}]-----------------",user.toString());
         model.addAttribute("user",user);
         return "index";
     }
