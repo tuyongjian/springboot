@@ -8,4 +8,6 @@ import com.tu.springboot.model.User;
 public interface IUserService {
 
     public User queryUser(int id);
+
+    public int addUser(User user);
 }

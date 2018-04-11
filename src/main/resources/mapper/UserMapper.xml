@@ -12,5 +12,17 @@
     <select id="selectById"  resultMap="UserMap">
         SELECT * FROM user_t  WHERE id = #{id}
     </select>
+    
+    <insert id="insert" parameterType="com.tu.springboot.model.User">
+      INSERT INTO user_t
+      (
+        user_name,
+        password
+      )VALUES (
+        #{userName},
+        #{password}
+      )
+
+    </insert>
 
 </mapper>

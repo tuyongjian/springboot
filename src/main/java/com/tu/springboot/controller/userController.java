@@ -1,5 +1,7 @@
 package com.tu.springboot.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tu.springboot.Constant.Constant;
 import com.tu.springboot.model.User;
 import com.tu.springboot.service.IUserService;
 import org.slf4j.Logger;
@@ -31,7 +33,24 @@ public class userController {
         return "index";
     }
 
-    @RequestMapping(value="queryUser")
+    @ResponseBody
+    @RequestMapping(value = "register",method = RequestMethod.POST)
+    public String register(ModelMap model,
+                           @RequestParam(value="userName")String userName,
+                           @RequestParam(value = "password")String password)throws Exception{
+
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        this.userService.addUser(user);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Constant constant = new Constant();
+        constant.setSuccess("true");
+        String jsonString=objectMapper.writeValueAsString(constant);
+        return jsonString;
+    }
+
+    @RequestMapping(value="queryUser",method = RequestMethod.POST)
     public @ResponseBody User queryUser(ModelMap model,
                    @RequestParam(value = "id") int id){
         logger.info("根据id[{}]查询用户------------",id);

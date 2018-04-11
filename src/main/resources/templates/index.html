@@ -1,12 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- CSS -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/supersized.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
-1112222<br/>
-33355566667777777778888
-${user.userName}
+<div class="page-container">
+    <h1>Login</h1>
+    <input type="text" name="userName" class="username" placeholder="Username" value="${user.userName}"><br>
+    <input type="password" name="password" class="password" placeholder="Password" value="${user.password}"><br>
+    <button class="sign">Sign me in</button><br>
+    <button class="register">register</button><br>
+    <button class="query">query</button><br>
+    <div class="error"><span>+</span></div>
+</div>
+<script src="../static/js/jquery-1.8.2.min.js"></script>
+<script src="../static/js/supersized.3.2.7.min.js"></script>
+<script src="../static/js/supersized-init.js"></script>
+<script src="../static/js/scripts.js"></script>
+<script>
+    //获取当前网址，
+    var curWwwPath=window.document.location.href;
+    //获取主机地址之后的目录，如： ssm/user/index.html
+    var pathName=window.document.location.pathname;
+    var pos=curWwwPath.indexOf(pathName);
+
+    //获取主机地址，如： http://localhost:8088
+    var localhostPath=curWwwPath.substring(0,pos);
+
+    //获取带"/"的项目名，如：/ssm
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+
+    $(".sign").on("click",function () {
+        window.location.href=localhostPath+"/"+projectName+"/user/test.html";
+    });
+
+    $(".register").on("click",function () {
+        $.ajax({
+            dataType:'json',
+            type:'post',
+            url: localhostPath+projectName+'/register',
+            data:{
+                userName:$('input[name="userName"]').val(),
+                password:$('input[name="password"]').val()
+            },
+            success:function (data) {
+                console.log(data.success);
+            }
+        });
+    });
+
+    $(".query").on("click",function () {
+        $.ajax({
+            dataType:'json',
+            type:'post',
+            url: localhostPath+projectName+'/queryUser',
+            data:{
+                id:"1"
+            },
+            success:function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+
+</script>
 </body>
+
 </html>
+
