@@ -96,6 +96,11 @@
       <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
     </dependency>
 
+    <dependency>
+      <groupId>com.tu.redis</groupId>
+      <artifactId>redis</artifactId>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>springboot</finalName>
