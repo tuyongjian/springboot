@@ -16,6 +16,6 @@ public class TestController {
     @GetMapping(value = "helloWorld")
     public String helloWorld(){
         logger.info("--------------------");
-        return "hello World";
+        return "hello World Hello world ";
     }
 }
